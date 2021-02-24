@@ -18,7 +18,7 @@
  */
 package se.uu.ub.cora.xmlutils.transformer;
 
-public class XslTransformationFactory implements CoraTransformationFactory {
+public class XsltTransformationFactory implements CoraTransformationFactory {
 
 	@Override
 	public CoraTransformation factor(String xsltPath) {

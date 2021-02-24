@@ -22,11 +22,11 @@ import static org.testng.Assert.assertTrue;
 
 import org.testng.annotations.Test;
 
-public class CoraTransformationFactoryTest {
+public class XsltTransformationFactoryTest {
 
 	@Test
 	public void testFactor() {
-		CoraTransformationFactory factory = new XslTransformationFactory();
+		XsltTransformationFactory factory = new XsltTransformationFactory();
 		String xsltPath = "xslt/someTest.xsl";
 		CoraTransformation transformation = factory.factor(xsltPath);
 		assertTrue(transformation instanceof XsltTransformation);

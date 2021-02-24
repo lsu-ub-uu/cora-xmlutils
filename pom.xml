@@ -25,7 +25,6 @@
 	<properties>
 		<logger.version>2.1.0</logger.version>
 		<coradata.version>3.6.0</coradata.version>
-		<converter.version>1.2.0</converter.version>
 	</properties>
 
 	<scm>
@@ -41,12 +40,6 @@
 			<artifactId>testng</artifactId>
 			<version>${testng.version}</version>
 			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>se.uu.ub.cora</groupId>
-			<artifactId>converter</artifactId>
-			<version>${converter.version}</version>
-			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>se.uu.ub.cora</groupId>

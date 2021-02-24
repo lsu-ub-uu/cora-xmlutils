@@ -27,8 +27,6 @@ import java.lang.reflect.Modifier;
 
 import org.testng.annotations.Test;
 
-import se.uu.ub.cora.xmlutils.transformer.ResourceReader;
-
 public class ResourceReaderTest {
 
 	@Test
