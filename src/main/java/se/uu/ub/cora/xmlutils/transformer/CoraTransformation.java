@@ -18,8 +18,12 @@
  */
 package se.uu.ub.cora.xmlutils.transformer;
 
+import java.util.Map;
+
 public interface CoraTransformation {
 
 	String transform(String inputXml);
+
+	String transformWithParameters(String inputXml, Map<String, Object> parameters);
 
 }

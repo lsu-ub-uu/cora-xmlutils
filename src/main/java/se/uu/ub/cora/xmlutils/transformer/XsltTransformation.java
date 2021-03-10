@@ -21,6 +21,8 @@ package se.uu.ub.cora.xmlutils.transformer;
 import java.io.ByteArrayOutputStream;
 import java.io.StringReader;
 import java.nio.charset.StandardCharsets;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.xml.XMLConstants;
 import javax.xml.transform.Result;
@@ -93,5 +95,30 @@ public class XsltTransformation implements CoraTransformation {
 
 	String getXsltPath() {
 		return xsltPath;
+	}
+
+	@Override
+	public String transformWithParameters(String inputXml, Map<String, Object> parameters) {
+		this.xslt = ResourceReader.readResourceAsString(xsltPath);
+		return tryToTransformWithParameters(inputXml, parameters);
+	}
+
+	private String tryToTransformWithParameters(String inputXml, Map<String, Object> parameters) {
+		try {
+			Transformer transformer = createTransformerWithParameters(parameters);
+			return transformUsingTransformer(inputXml, transformer).trim();
+		} catch (Exception e) {
+			throw ParseException.withMessageAndException(
+					"Error transforming xml: Can not read xml: " + e.getCause(), e);
+		}
+	}
+
+	private Transformer createTransformerWithParameters(Map<String, Object> parameters)
+			throws Exception {
+		Transformer transformer = generateTransformer();
+		for (Entry<String, Object> parameter : parameters.entrySet()) {
+			transformer.setParameter(parameter.getKey(), parameter.getValue());
+		}
+		return transformer;
 	}
 }

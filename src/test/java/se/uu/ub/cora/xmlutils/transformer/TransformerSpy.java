@@ -16,6 +16,7 @@ public class TransformerSpy extends Transformer {
 	public Map<String, String> outputProperties = new HashMap<>();
 	public Source source;
 	public Result result;
+	public Map<String, Object> parameters = new HashMap<>();
 
 	@Override
 	public void clearParameters() {
@@ -71,7 +72,8 @@ public class TransformerSpy extends Transformer {
 	}
 
 	@Override
-	public void setParameter(String arg0, Object arg1) {
+	public void setParameter(String name, Object value) {
+		parameters.put(name, value);
 		// TODO Auto-generated method stub
 
 	}

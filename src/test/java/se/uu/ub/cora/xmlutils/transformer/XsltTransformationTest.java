@@ -20,6 +20,9 @@ package se.uu.ub.cora.xmlutils.transformer;
 
 import static org.testng.Assert.assertEquals;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.xml.XMLConstants;
 
 import org.testng.annotations.BeforeMethod;
@@ -85,7 +88,52 @@ public class XsltTransformationTest {
 	public void testExceptionThrownCannotReadXsltFile() throws Exception {
 		XsltTransformation xsltTransformation2 = new XsltTransformation("path/not/found.xls");
 		xsltTransformation2.transform("someXml");
+	}
 
+	@Test
+	public void testSimpleTransformationWithParametersCheckParameters() throws Exception {
+		System.setProperty("javax.xml.transform.TransformerFactory",
+				"se.uu.ub.cora.xmlutils.transformer.TransformerFactorySpy");
+		String inputXml = ResourceReader.readResourceAsString(XML_FEDORA_PLACE);
+		Map<String, Object> parameters = new HashMap<>();
+		parameters.put("domain", "uu");
+		parameters.put("someIntegerParameter", 45);
+
+		xsltTransformation.transformWithParameters(inputXml, parameters);
+
+		TransformerFactorySpy transformerFactorySpy = TransformerFactorySpy.factory;
+		TransformerSpy transformerSpy = transformerFactorySpy.transformers.get(0);
+
+		assertEquals(transformerSpy.parameters.get("domain"), "uu");
+		assertEquals(transformerSpy.parameters.get("someIntegerParameter"), 45);
+
+	}
+
+	@Test
+	public void testSimpleTransformationWithParametersCheckResult() throws Exception {
+		System.setProperty("javax.xml.transform.TransformerFactory",
+				"com.sun.org.apache.xalan.internal.xsltc.trax.TransformerFactoryImpl");
+		String inputXml = ResourceReader.readResourceAsString(XML_FEDORA_PLACE);
+		Map<String, Object> parameters = new HashMap<>();
+		parameters.put("domain", "uu");
+		parameters.put("someIntegerParameter", 45);
+
+		String outputXml = xsltTransformation.transformWithParameters(inputXml, parameters);
+
+		String expectedOutput = ResourceReader.readResourceAsString(XML_CORA_PLACE);
+		assertEquals(outputXml, expectedOutput);
+	}
+
+	@Test(expectedExceptions = ParseException.class, expectedExceptionsMessageRegExp = ""
+			+ "Error transforming xml: Can not read xml: "
+			+ "javax.xml.transform.TransformerException: "
+			+ "com.sun.org.apache.xml.internal.utils.WrappedRuntimeException: "
+			+ "The element type \"pid\" must be terminated by the matching end-tag \"</pid>\".")
+	public void parseExceptionShouldBeThrownOnMalformedXMLForTransforWithParameters()
+			throws Exception {
+		String inputXml = "<pid></notPid>";
+		Map<String, Object> parameters = new HashMap<>();
+		xsltTransformation.transformWithParameters(inputXml, parameters);
 	}
 
 }
