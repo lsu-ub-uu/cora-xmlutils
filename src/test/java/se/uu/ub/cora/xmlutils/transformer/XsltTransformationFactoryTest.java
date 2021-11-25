@@ -18,18 +18,28 @@
  */
 package se.uu.ub.cora.xmlutils.transformer;
 
-import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.assertEquals;
 
 import org.testng.annotations.Test;
 
 public class XsltTransformationFactoryTest {
+	private String xsltPath = "xslt/someTest.xsl";
 
 	@Test
 	public void testFactor() {
 		XsltTransformationFactory factory = new XsltTransformationFactory();
-		String xsltPath = "xslt/someTest.xsl";
-		CoraTransformation transformation = factory.factor(xsltPath);
-		assertTrue(transformation instanceof XsltTransformation);
+		XsltTransformation transformation = (XsltTransformation) factory.factor(xsltPath);
+		assertEquals(transformation.getXsltPath(), xsltPath);
+	}
+
+	@Test
+	public void testFactorWithRelatedPath() {
+		XsltTransformationFactory factory = new XsltTransformationFactory();
+		String relatedRecordPath = "xslt/someRelatedRecordTest.xsl";
+		XsltTransformation transformation = (XsltTransformation) factory
+				.factorWithRelatedRecords(xsltPath, relatedRecordPath);
+		assertEquals(transformation.getXsltPath(), xsltPath);
+		assertEquals(transformation.getRelatedXsltPath(), relatedRecordPath);
 	}
 
 }

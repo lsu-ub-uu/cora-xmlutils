@@ -21,6 +21,7 @@ package se.uu.ub.cora.xmlutils.transformer;
 import java.io.ByteArrayOutputStream;
 import java.io.StringReader;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -37,9 +38,15 @@ public class XsltTransformation implements CoraTransformation {
 
 	private String xslt;
 	private String xsltPath;
+	private String relatedXsltPath;
 
 	public XsltTransformation(String xsltPath) {
 		this.xsltPath = xsltPath;
+	}
+
+	public XsltTransformation(String xsltPath, String relatedXsltPath) {
+		this.xsltPath = xsltPath;
+		this.relatedXsltPath = relatedXsltPath;
 	}
 
 	@Override
@@ -120,5 +127,15 @@ public class XsltTransformation implements CoraTransformation {
 			transformer.setParameter(parameter.getKey(), parameter.getValue());
 		}
 		return transformer;
+	}
+
+	@Override
+	public String transform(String mainXML, List<String> relatedXmlStrings) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	String getRelatedXsltPath() {
+		return relatedXsltPath;
 	}
 }
