@@ -32,14 +32,14 @@ public class XsltTransformationFactoryTest {
 		assertEquals(transformation.getXsltPath(), xsltPath);
 	}
 
-	@Test
-	public void testFactorWithRelatedPath() {
-		XsltTransformationFactory factory = new XsltTransformationFactory();
-		String relatedRecordPath = "xslt/someRelatedRecordTest.xsl";
-		XsltTransformation transformation = (XsltTransformation) factory
-				.factorWithRelatedRecords(xsltPath, relatedRecordPath);
-		assertEquals(transformation.getXsltPath(), xsltPath);
-		assertEquals(transformation.getRelatedXsltPath(), relatedRecordPath);
-	}
+	// @Test
+	// public void testFactorWithRelatedPath() {
+	// XsltTransformationFactory factory = new XsltTransformationFactory();
+	// String relatedRecordPath = "xslt/someRelatedRecordTest.xsl";
+	// XsltTransformation transformation = (XsltTransformation) factory
+	// .factorWithRelatedRecords(xsltPath, relatedRecordPath);
+	// assertEquals(transformation.getXsltPath(), xsltPath);
+	// assertEquals(transformation.getRelatedXsltPath(), relatedRecordPath);
+	// }
 
 }

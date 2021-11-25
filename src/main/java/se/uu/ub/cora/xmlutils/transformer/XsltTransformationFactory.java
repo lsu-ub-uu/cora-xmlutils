@@ -25,10 +25,10 @@ public class XsltTransformationFactory implements CoraTransformationFactory {
 		return new XsltTransformation(xsltPath);
 	}
 
-	@Override
-	public CoraTransformation factorWithRelatedRecords(String mainXsltPath,
-			String relatedXsltPath) {
-		return new XsltTransformation(mainXsltPath, relatedXsltPath);
-	}
+	// @Override
+	// public CoraTransformation factorWithRelatedRecords(String mainXsltPath,
+	// String relatedXsltPath) {
+	// return new XsltTransformation(mainXsltPath, relatedXsltPath);
+	// }
 
 }

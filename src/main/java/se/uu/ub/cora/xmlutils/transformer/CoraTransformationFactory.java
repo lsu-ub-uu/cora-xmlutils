@@ -22,6 +22,4 @@ public interface CoraTransformationFactory {
 
 	CoraTransformation factor(String xsltPath);
 
-	CoraTransformation factorWithRelatedRecords(String mainXsltPath, String relatedXsltPath);
-
 }
