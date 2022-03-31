@@ -24,7 +24,7 @@
 
 	<properties>
 		<logger.version>2.4.0</logger.version>
-		<coradata.version>6.0.0</coradata.version>
+		<coradata.version>6.1.0</coradata.version>
 	</properties>
 
 	<scm>
