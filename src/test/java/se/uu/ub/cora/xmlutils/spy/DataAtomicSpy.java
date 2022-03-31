@@ -1,6 +1,9 @@
 package se.uu.ub.cora.xmlutils.spy;
 
+import java.util.Collection;
+
 import se.uu.ub.cora.data.DataAtomic;
+import se.uu.ub.cora.data.DataAttribute;
 
 public class DataAtomicSpy implements DataAtomic {
 
@@ -34,6 +37,30 @@ public class DataAtomicSpy implements DataAtomic {
 	public void setRepeatId(String repeatId) {
 		this.repeatId = repeatId;
 
+	}
+
+	@Override
+	public void addAttributeByIdWithValue(String nameInData, String value) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public boolean hasAttributes() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public DataAttribute getAttribute(String nameInData) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Collection<DataAttribute> getAttributes() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
